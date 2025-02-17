@@ -17,7 +17,7 @@ for infile in *_1.fastq.gz
 >                SLIDINGWINDOW:4:20 MINLEN:25 ILLUMINACLIP:NexteraPE-PE.fa:2:40:15 
 > done
 
-#Create a directory for the trimmed files
+#Create a directory and move the trimmed files
 cd ~/dc_workshop/data/untrimmed_fastq
 mkdir ../trimmed_fastq
 mv *.trim* ../trimmed_fastq
