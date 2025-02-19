@@ -22,3 +22,17 @@ mkdir -p results/sam results/bam results/bcf results/vcf
 #Index the reference genome using BWA
 bwa index data/ref_genome/ecoli_rel606.fasta
 
+#After Indexing the reference genome,we align the reads to reference genome
+#Use BWA-MEM algorithm to align reads
+bwa mem data/ref_genome/ecoli_rel606.fasta data/trimmed_fastq_small/SRR2584866_1.trim.sub.fastq data/trimmed_fastq_small/SR>
+
+#We will convert the SAM file to BAM format using the samtools program
+#Input is in SAM format (-S) and output BAM format (-b)
+samtools view -S -b results/sam/SRR2584866.aligned.sam > results/bam/SRR2584866.aligned.bam
+
+#Next we sort the BAM file using the sort command from samtools
+samtools sort -o results/bam/SRR2584866.aligned.sorted.bam results/bam/SRR2584866.aligned.bam
+
+#To view the statistics of the BAM file
+samtools flagstat results/bam/SRR2584866.aligned.sorted.bam
+
